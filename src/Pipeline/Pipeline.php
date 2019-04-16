@@ -59,7 +59,11 @@ class Pipeline
         return $this;
     }
 
-    public function finish(): ?StreamInterface
+    /**
+     * @return StreamInterface
+     * @throws Request\PipelineRequestException
+     */
+    public function finish(): StreamInterface
     {
         if (count($this->operations) === 0) {
             throw new NoOperationsToFinishException();

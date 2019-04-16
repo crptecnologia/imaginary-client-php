@@ -38,16 +38,19 @@ class PipelineRequest implements PipelineRequestInterface
      * @param SourceInterface $source
      * @param array $operations
      * @return StreamInterface
+     * @throws PipelineRequestException
      */
-    public function request(SourceInterface $source, array $operations): ?StreamInterface
+    public function request(SourceInterface $source, array $operations): StreamInterface
     {
         $pipelineRequestStrategy = $this->strategyFactory->make($source, $operations);
-
         try {
             return $this->send($pipelineRequestStrategy);
         } catch (GuzzleException $e) {
-            $this->logger->error($e->getMessage(), $e->getTrace());
-            return null;
+            throw new PipelineRequestException(
+                $e->getMessage(),
+                $e->getCode(),
+                $e
+            );
         }
     }
 
