@@ -39,10 +39,11 @@ class LaravelFileSystem implements FileSystemInterface
 
     /**
      * @param string $file
+     * @return resource|null
      * @throws FileNotFoundException
      */
     public function open(string $file)
     {
-        $this->filesystem->readStream($file);
+        return $this->filesystem->readStream($file);
     }
 }
