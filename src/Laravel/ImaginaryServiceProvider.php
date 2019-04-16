@@ -24,6 +24,8 @@ class ImaginaryServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/imaginary.php' => config_path('imaginary.php'),
         ]);
+
+        $this->commands('vendor:publish');
     }
 
     public function register()
