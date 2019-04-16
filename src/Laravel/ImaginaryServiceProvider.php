@@ -32,7 +32,7 @@ class ImaginaryServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(
             self::CONFIG,
-            'config'
+            'imaginary'
         );
 
         $this->app->singleton(
