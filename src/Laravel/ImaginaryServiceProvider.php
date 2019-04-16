@@ -18,18 +18,23 @@ use Psr\Log\LoggerInterface;
 
 class ImaginaryServiceProvider extends ServiceProvider
 {
+    public const CONFIG = __DIR__ . '/imaginary.php';
 
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/imaginary.php' => config_path('imaginary.php'),
-        ]);
+            self::CONFIG => config_path('imaginary.php'),
+        ], 'config');
 
-        $this->commands('vendor:publish');
     }
 
     public function register()
     {
+        $this->mergeConfigFrom(
+            self::CONFIG,
+            'config'
+        );
+
         $this->app->singleton(
             FileSystemInterface::class,
             LaravelFileSystem::class
