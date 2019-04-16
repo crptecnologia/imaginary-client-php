@@ -43,4 +43,13 @@ class PipelineFactory implements PipelineFactoryInterface
         );
     }
 
+    /**
+     * @param DefaultConfiguration $defaultConfiguration
+     */
+    public function setDefaultConfiguration(DefaultConfiguration $defaultConfiguration): void
+    {
+        $this->defaultConfiguration = $defaultConfiguration;
+    }
+
+
 }
